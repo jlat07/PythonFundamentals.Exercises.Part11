@@ -1,86 +1,80 @@
-class AliveStatus:
-    def __init__(self, length: int, width: int):
-        self.length = length
-        self.width = width
+from typing import List, Dict
+from enum import Enum
+import uuid
 
 
-This class must inherit from Enum.
-It must have two possible symbolic names:
-* Deceased - associated with the value 0
-* Alive - associated with the value 1
-
-
-class Person(Enum):
-    def __init__(self, first_name: int, last_name: int, dob: str, ):
+class AliveStatus(Enum):
+    deceased = 0
+    alive = 1
+    
+class Person(self):
+    def __init__(self, first_name: str, last_name: str, dob: str):
         self.first_name = first_name
         self.last_name = last_name
         self.dob = dob
-        self.status = 0
-* alive (of type AliveStatus)
-
-    def update_first_name():
+        self.status = AliveStatus.alive
+        
+    def update_first_name(self, first_name: str):
+        self.first_name = first_name
     
-    def update_last_name():
+    def update_last_name(self, last_name: str):
+        self.last_name = last_name
     
-    def update_dob():
+    def update_dob(self, dob: str):
+        self.dob = dob
     
-    def update_status():
+    def update_status(self, alive: AliveStatus):
+        self.status = alive
+        
+        
+        def __str__(self):
+            return f"{self.first_name} {self.last_name}"
 
 
 class Instructor(Person):
-    def __init__(self, first_name: int, last_name: int, dob: str, ):
+    def __init__(self, first_name: str, last_name: str, dob: str):
         Person.__init__(self, first_name, last_name, dob)
-        self.first_name = first_name
-        self.last_name = last_name
-        self.dob = dob
-        self.status = 0
-        self.instructor_id = "Instructor_"()
+        self.instructor_id = f"Instructor_{uuid.uuid4()}"
+        
 
 class Student(Person):
-    def __init__(self, first_name: int, last_name: int, dob: str, ):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.dob = dob
-        self.status = 0
-        self.student_id = "Student_"()
-
+    def __init__(self, first_name: str, last_name: str, dob: str):
+        Person.__init__(self, first_name, last_name, dob)
+        self.instructor_id = f"Instructor_{uuid.uuid4()}"
 
 class ZipCodeStudent(Student):
-    def __init__(self, first_name: int, last_name: int, dob: str, ):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.dob = dob
-        self.status = 0
-        self.student_id = "Student_"()
+    def __init__(self, first_name: str, last_name: str, dob: str):
+        Person.__init__(self, first_name, last_name, dob)
 
 
 class CollegeStudent(Student):
-    def __init__(self, first_name: int, last_name: int, dob: str, ):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.dob = dob
-        self.status = 0
-        self.student_id = "Student_"()
+    def __init__(self, first_name: str, last_name: str, dob: str, ):
+        Person.__init__(self, first_name, last_name, dob)
 
 
-class Classroom(self):
-    def __init__ (self, students: Student, instructors: Instructor):
-        self.students = students
-        self.instructors = instructors
+class Classroom:
+    def __init__ (self):
+        self.students: Dict[str, Student] = {}
+        self.instructors: Dict[str, Instructor] = {}
         
-    def add_instructor():
+    def add_instructor(self, instructor: Instructor):
     
-    def remove_instructor():
     
-    def add_student():
+    def remove_instructor(self, instructor: Instructor):
     
-    def remove_student():
+    def add_student(self, student: Student):
     
-    def print_instructors():
+    def remove_student(self, student: Student):
     
-    def print_students():
+    def print_instructors(self):
+    
+    def print_students(self):
+    
+    
 
-
+    
+if __name__ == "__main__":
+    pass
 
 ```
  python3 -m unittest test_gradebook.py
